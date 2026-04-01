@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Templates – Customer Service</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-size: 14px;
+    color: #202124;
+    background: #f8f9fa;
+    line-height: 1.6;
+  }
+
+  /* ---- HEADER ---- */
+  .doc-header {
+    background: #1a73e8;
+    color: white;
+    padding: 32px 48px;
+  }
+  .doc-header h1 { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+  .doc-header p { font-size: 13px; opacity: 0.85; }
+
+  /* ---- LAYOUT ---- */
+  .layout {
+    display: flex;
+    min-height: calc(100vh - 88px);
+  }
+
+  /* ---- SIDEBAR / TOC ---- */
+  .sidebar {
+    width: 280px;
+    min-width: 260px;
+    background: #fff;
+    border-right: 1px solid #e0e0e0;
+    padding: 24px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .sidebar-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #5f6368;
+    padding: 0 20px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 12px;
+  }
+  #toc { list-style: none; }
+  .toc-cat { margin-bottom: 4px; }
+  .toc-cat > a {
+    display: block;
+    padding: 7px 20px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #1a73e8;
+    text-decoration: none;
+    border-radius: 0 20px 20px 0;
+    transition: background .15s;
+  }
+  .toc-cat > a:hover { background: #e8f0fe; }
+  .toc-cat ul { list-style: none; padding-left: 20px; }
+  .toc-cat ul li a {
+    display: block;
+    padding: 4px 12px;
+    font-size: 12.5px;
+    color: #3c4043;
+    text-decoration: none;
+    border-radius: 0 20px 20px 0;
+    transition: background .15s;
+  }
+  .toc-cat ul li a:hover { background: #f1f3f4; color: #1a73e8; }
+
+  /* ---- MAIN CONTENT ---- */
+  .main {
+    flex: 1;
+    padding: 32px 48px;
+    max-width: 860px;
+  }
+
+  .category {
+    margin-bottom: 48px;
+  }
+  .category h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a73e8;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a73e8;
+    margin-bottom: 20px;
+  }
+
+  .template {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  }
+  .template-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8f9fa;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .template-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #202124;
+  }
+  .back-link {
+    font-size: 11px;
+    color: #5f6368;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .back-link:hover { color: #1a73e8; }
+  .template-body {
+    padding: 20px 24px;
+    background: #fff;
+    font-size: 13.5px;
+    color: #3c4043;
+  }
+  .template-body p { margin-bottom: 10px; }
+  .template-body ul { margin: 8px 0 10px 20px; }
+  .template-body li { margin-bottom: 4px; }
+  .template-body p:last-child { margin-bottom: 0; }
+
+  /* ---- PRINT ---- */
+  @media print {
+    .sidebar { display: none; }
+    .main { max-width: 100%; padding: 20px; }
+    .template { break-inside: avoid; }
+  }
+
+  /* ---- SCROLLBAR ---- */
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #dadce0; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div class="doc-header">
+  <h1>📧 Email Templates – Customer Service</h1>
+  <p>Alle email-templates gegroepeerd per onderwerp. Klik op een categorie of template in het menu om direct te navigeren.</p>
+</div>
+
+<div class="layout">
+
+  <nav class="sidebar">
+    <div class="sidebar-title">Inhoudsopgave</div>
+    <ul id="toc">
+      <li class="toc-cat"><a href="#product-question">🛍️ PRODUCT QUESTION</a><ul><li><a href="#product-question-size-material">Size/Material</a></li></ul></li><li class="toc-cat"><a href="#order-status">📦 ORDER STATUS</a><ul><li><a href="#order-status-order-info">Order Info</a></li><li><a href="#order-status-no-order-found">No order found</a></li><li><a href="#order-status-unfulfilled">Unfulfilled</a></li><li><a href="#order-status-fulfilled-outside-processing-time">Fulfilled - Outside processing time</a></li><li><a href="#order-status-shipped-with-tracking">Shipped with tracking</a></li><li><a href="#order-status-shipped-10-days-info-received">Shipped &gt;10 days Info  Received</a></li></ul></li><li class="toc-cat"><a href="#delivered-not-received">📬 DELIVERED NOT RECEIVED</a><ul><li><a href="#delivered-not-received-area-check">Area-check</a></li><li><a href="#delivered-not-received-loss-certificate">Loss certificate</a></li><li><a href="#delivered-not-received-escalatio">Escalatio</a></li></ul></li><li class="toc-cat"><a href="#cancellation">❌ CANCELLATION</a><ul><li><a href="#cancellation-more-than-100">More than €100</a></li><li><a href="#cancellation-no-reaso">No reaso</a></li><li><a href="#cancellation-with-reaso">With reaso</a></li><li><a href="#cancellation-bad-review">Bad Review</a></li><li><a href="#cancellation-delayed-processing-of-orders">Delayed Processing of Orders</a></li><li><a href="#cancellation-24-hours-unfulfilled">24 hours Unfulfilled</a></li><li><a href="#cancellation-fulfilled-processing-24-hours">Fulfilled/Processing &gt;24 hours</a></li></ul></li><li class="toc-cat"><a href="#change-shipping-color-size">✏️ CHANGE SHIPPING/COLOR/SIZE</a><ul><li><a href="#change-shipping-color-size-change-accepted">Change Accepted</a></li><li><a href="#change-shipping-color-size-change-size-color">Change Size/Color</a></li><li><a href="#change-shipping-color-size-fulfilled-in-transit">Fulfilled - In transit</a></li></ul></li><li class="toc-cat"><a href="#returns">↩️ RETURNS</a><ul><li><a href="#returns-no-return-reaso">No return reaso</a></li><li><a href="#returns-offer-size-replacement-w-fee">Offer size replacement w/ fee</a></li><li><a href="#returns-offer-10-pr-or-50-store-credit">Offer 10% PR or 50% store credit</a></li><li><a href="#returns-offer-20-pr-or-75-store-credit">Offer 20% PR or 75% store credit</a></li><li><a href="#returns-re-offer-20-pr-return-instructio">Re-offer 20% PR + Return Instructio</a></li><li><a href="#returns-free-size-replacement">Free size replacement</a></li><li><a href="#returns-offer-30-pr-max-or-100-store-credit">Offer 30% PR max or 100% store credit</a></li><li><a href="#returns-refused-offers-pushback-retur">Refused offers - Pushback retur</a></li><li><a href="#returns-store-credit-acceptance">Store Credit - Acceptance</a></li><li><a href="#returns-replacements-acceptance">Replacements - Acceptance</a></li><li><a href="#returns-keep-the-item">Keep the item</a></li><li><a href="#returns-purchase-amount-refunded">Purchase Amount Refunded</a></li></ul></li><li class="toc-cat"><a href="#returns-wrong-address">📍 RETURNS – Wrong Address</a><ul><li><a href="#returns-wrong-address-wrong-address">Wrong address</a></li></ul></li><li class="toc-cat"><a href="#damaged-wrong-item-received">⚠️ DAMAGED/WRONG ITEM RECEIVED</a><ul><li><a href="#damaged-wrong-item-received-photo-evidence">Photo evidence</a></li><li><a href="#damaged-wrong-item-received-offer-replacement">Offer replacement</a></li><li><a href="#damaged-wrong-item-received-replacement-policy">Replacement policy</a></li><li><a href="#damaged-wrong-item-received-purchase-amount-refunded">Purchase Amount Refunded</a></li></ul></li><li class="toc-cat"><a href="#order-lost-in-transit-return-to-sender-rts">🔍 ORDER LOST IN TRANSIT &amp; RETURN TO SENDER (RTS)</a><ul><li><a href="#order-lost-in-transit-return-to-sender-rts-takeover">Takeover</a></li></ul></li><li class="toc-cat"><a href="#return-to-china-rtc">🇨🇳 RETURN TO CHINA (RTC)</a><ul><li><a href="#return-to-china-rtc-in-transit">In Transit</a></li><li><a href="#return-to-china-rtc-awaiting-update">Awaiting Update</a></li><li><a href="#return-to-china-rtc-reached-customs">Reached customs</a></li><li><a href="#return-to-china-rtc-rts-retur">RTS retur</a></li></ul></li><li class="toc-cat"><a href="#general-query">💬 GENERAL QUERY</a><ul><li><a href="#general-query-unsubscribe-newsletter">Unsubscribe Newsletter</a></li><li><a href="#general-query-pending-concer">Pending Concer</a></li><li><a href="#general-query-dispute-threat">Dispute Threat</a></li><li><a href="#general-query-why-is-it-from-china">Why is it from China?</a></li></ul></li>
+    </ul>
+  </nav>
+
+  <main class="main">
+    
+<section class="category" id="product-question">
+  <h2>🛍️ PRODUCT QUESTION</h2>
+
+  <article class="template" id="product-question-size-material">
+    <div class="template-header">
+      <h3>Size/Material</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for your message and for your interest in our product!</p><p>To assist you better, could you please share the product name or send me the direct product link? This will help me provide you with the right support as quickly as possible.</p><p>We offer many models on our site, which you can browse here: [LINK]</p><p>I look forward to your reply!</p><p>Warm regards,</p>
+    </div>
+  </article>
+</section>
+
+<section class="category" id="order-status">
+  <h2>📦 ORDER STATUS</h2>
+
+  <article class="template" id="order-status-order-info">
+    <div class="template-header">
+      <h3>Order Info</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you very much for your inquiry!</p><p>So that we can check the status of your order, please send us the following information:</p><ul><li>1. Your order number</li><li>2. The email address you used when ordering</li><li>3. The name of the order/account</li></ul><p>As soon as we have this information, we will immediately look into the matter and provide you with an update.</p><p>We look forward to hearing from you!</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="order-status-no-order-found">
+    <div class="template-header">
+      <h3>No order found</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>I’ve had a look through our records, but I wasn’t able to find an order matching the information you shared. Don’t worry, we’ll get this figured out together.</p><p>Would you please send me a copy of your order confirmation or transaction receipt? With that, I can double-check our system and make sure we’re looking in the right place.</p><p>Thanks so much for your understanding and for helping us get this sorted. I’ll be glad to assist further once I have the details.</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="order-status-unfulfilled">
+    <div class="template-header">
+      <h3>Unfulfilled</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for your patience.</p><p>I just wanted to let you know that your order has already been shipped and handed over to the courier.</p><p>Shipping typically takes 7-14 business days, but please note that once the package is in transit, the delivery timeframe depends on the shipping company and is unfortunately beyond my control.</p><p>Rest assured, I’m doing my best to ensure everything runs smoothly so your order reaches you as soon as possible. I truly hope that once it arrives, you’ll find it well worth the wait.</p><p>If you have any further questions, feel free to reach out anytime.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="order-status-fulfilled-outside-processing-time">
+    <div class="template-header">
+      <h3>Fulfilled - Outside processing time</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for reaching out about your order.</p><p>I’ve reviewed the tracking details and noticed there hasn’t been any recent movement with your package. I’m truly sorry for the delay, your experience matters a lot to me, and I want to make sure this is resolved as smoothly as possible.</p><p>Processing and shipping usually take 7–14 business days, but I completely understand how valuable clear updates are. Please know I’m already in touch with the shipping carrier to check on the status, and I’ll share any news with you right away.</p><p>I really appreciate your patience and understanding, and I’m here for any questions you might have in the meantime.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="order-status-shipped-with-tracking">
+    <div class="template-header">
+      <h3>Shipped with tracking</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for your patience.</p><p>I’m happy to let you know that your order has already been shipped! You can track it here: [Insert tracking link].</p><p>Shipping usually takes around 7–14 business days, but please note that once the package is in transit, the exact delivery time depends on the courier and is unfortunately beyond my control.</p><p>Rest assured, I’m keeping an eye on things and doing my best to ensure your order arrives safely and as quickly as possible. Thank you for your patience during this time.</p><p>If you have any other questions, please don’t hesitate to reach out.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="order-status-shipped-10-days-info-received">
+    <div class="template-header">
+      <h3>Shipped &gt;10 days Info  Received</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for reaching out, and I truly appreciate your patience.</p><p>I’ve checked your order and can confirm that it has already been processed and handed over for shipping. Sometimes the courier’s tracking system takes a little while to refresh, which can make it look like nothing is happening even though the parcel is already en route.</p><p>I’ve gone ahead and followed up with our shipping partner to get the latest status for you. I’ll make sure to update the tracking likely within the next 24–48 hours.</p><p>We’re very sorry for the delay and truly appreciate your understanding. Your order is on its way, and we can’t wait for you to receive it!</p><p>If you have any other questions or need anything else in the meantime, feel free to let me know, I’m here to help.</p><p>Best regards,</p>
+    </div>
+  </article>
+</section>
+
+<section class="category" id="delivered-not-received">
+  <h2>📬 DELIVERED NOT RECEIVED</h2>
+
+  <article class="template" id="delivered-not-received-area-check">
+    <div class="template-header">
+      <h3>Area-check</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for contacting us. I’m sorry to hear that your order hasn’t reached you yet, even though the tracking shows it as delivered.</p><p>Sometimes, couriers mark packages as delivered a day or two early. While it may still be on its way, here are a few things you can check in the meantime:</p><ul><li>Confirm your shipping address is correct.</li><li>Ask neighbors or household members if they may have received the parcel.</li><li>Look around your property for any secure spots where the courier might have left it.</li><li>Contact your local courier or postal service, they often have more detailed delivery info.</li></ul><p>Here are your order details for reference: Tracking Number: Tracking Link: Courier Contact Info:</p><p>If the package still doesn’t appear after these steps, please let us know right away. We’ll help you resolve this as quickly as possible.</p><p>Thank you for your patience and understanding!</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="delivered-not-received-loss-certificate">
+    <div class="template-header">
+      <h3>Loss certificate</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for getting in touch with us. We’ve checked with the courier, and their records confirm that your order was successfully delivered. Since no issues were reported at the time of delivery, we’re unfortunately not able to issue a refund or replacement right away.</p><p>That said, there’s still a good next step: we recommend requesting a certificate of loss from the courier. This document helps confirm that the package wasn’t received, even though the system shows it as delivered. Once you have it, please share it with us, and we’ll gladly guide you through the next steps to resolve this for you.</p><p>We truly understand your concern and greatly appreciate your patience and cooperation. Please know we’re here to support you until this is settled.</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="delivered-not-received-escalatio">
+    <div class="template-header">
+      <h3>Escalatio</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for your patience while we investigated your concern. We understand how disappointing it is when a package appears as delivered but hasn’t reached you.</p><p>We’re more than happy to offer a free replacement for your order. We can process and ship a new package right away.</p><p>Please confirm if you’d like us to proceed with this replacement. If you have any special delivery instructions or an alternative address, kindly let us know so we can ensure smooth delivery.</p><p>We appreciate your understanding and are committed to making this right for you.</p><p>Warm regards,</p>
+    </div>
+  </article>
+</section>
+
+<section class="category" id="cancellation">
+  <h2>❌ CANCELLATION</h2>
+
+  <article class="template" id="cancellation-more-than-100">
+    <div class="template-header">
+      <h3>More than €100</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for reaching out. We're sorry to hear you decided not to proceed with this order. We completely understand that sometimes plans change, and your feedback truly means a lot to us.</p><p>We want to be transparent with you: as soon as an order is confirmed, it is automatically forwarded to our fulfillment system for processing. From there, the process moves very quickly. Our warehouse team starts the pick &amp; pack stage to ensure fast delivery. Once this process begins, the order is already being prepared for shipment, and unfortunately, at that stage we no longer have the option to stop or cancel it.</p><p>Because your order has already entered this stage, it is unfortunately no longer possible for us to stop or cancel it. At this point, the parcel is essentially on its way out of the warehouse, and once it has been handed over to the courier, it cannot be retrieved.</p><p>We know this may not be the outcome you were hoping for. We kindly ask you to wait for your order, have a look and see what you think. If for any reason it doesn’t meet your expectations, we will be happy to assist you with a return or exchange within 30 days of receiving it.</p><p>We truly appreciate your understanding and patience with this process. In the meantime, if there’s anything else we can do to support you, please let us know.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="cancellation-no-reaso">
+    <div class="template-header">
+      <h3>No reaso</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for reaching out to us regarding your order. We completely understand that sometimes plans change, and your feedback truly means a lot to us. Our goal is always to support you in the best way we can.</p><p>Instead of cancelling, we’d love to see if an adjustment or modification could solve the issue for you.</p><p>If it’s the wrong size, color, or style, would you like us to adjust it before it ships? Or is there another detail you’d like us to change while the order is still being prepared?</p><p>Your satisfaction means everything to us, and instead of cancelling your order, perhaps we can work together to explore adjustments before it ships.</p><p>We look forward to hearing back from you and are here to assist in any way we can.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="cancellation-with-reaso">
+    <div class="template-header">
+      <h3>With reaso</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for sharing the details about your order, I really appreciate you letting me know.</p><p>I’ll be glad to support you with this request, whether it means adjusting your order, guiding you through the next steps, or helping with an alternative solution. I'm more than happy to help you out with this.</p><p>As a little thank you for your patience, I’d also love to offer you a 25% discount code for your next order. That way, whenever you choose to shop with us again, you’ll enjoy something extra special.</p><p>Please let me know how you’d like to proceed, and I’ll take care of it right away.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="cancellation-bad-review">
+    <div class="template-header">
+      <h3>Bad Review</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for your message. I completely understand your concern, and I want to be as clear and supportive as possible.</p><p>At this point, your order has already moved past the cancellation window and is now with the courier, which means we’re unfortunately unable to stop it. I know this might not be the answer you were hoping for, but please rest assured we’ll be here to assist once it arrives.</p><p>I also hear your concerns about reviews you may have come across online. Like any business, we occasionally receive feedback, but we treat each piece of feedback as valuable input. Most of our customers are happy with their experience, but on the rare occasions where something doesn’t go as planned, we take it seriously and make improvements.</p><p>Once your order is delivered, I’d love for you to see it for yourself. If it turns out not to be what you expected, we’ll be happy to support you with a return or exchange.</p><p>Thank you for giving us the chance to make this right for you. If you have any other questions, I’m always here to help.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="cancellation-delayed-processing-of-orders">
+    <div class="template-header">
+      <h3>Delayed Processing of Orders</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for getting in touch and for sharing your concern. I completely understand how frustrating delivery delays can be, and I’m very sorry for the trouble this has caused.</p><p>Since your order is already on its way, cancellation isn’t possible at this stage. That said, I don’t want to leave you without answers, I’ll personally follow up with both our warehouse and courier partners to check where the package is and push for the quickest possible resolution.</p><p>I’ll update you as soon as I hear back. In the meantime, please know that you’re not alone in this. I’ll keep monitoring the case until your order is safely with you.</p><p>If you have any other questions, just reply to this email and I’ll be glad to help.</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="cancellation-24-hours-unfulfilled">
+    <div class="template-header">
+      <h3>24 hours Unfulfilled</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for contacting us.</p><p>It appears that your order has already been processed. According to our cancellation policy, which can be found on our website, you can cancel an order within 24 hours of order confirmation. Your email is outside this 24 hours window.</p><p>Please note that your data was sent to our processing system immediately after your order. We do this to ensure faster delivery. Therefore, unfortunately, we cannot make any changes or cancellations at this time.</p><p>We advise you to wait for the package to arrive and then decide whether you want to return or keep it. If you decide to proceed with the return, you can contact us for more information.</p><p>Feel free to reach out if you have further questions.</p><p>Stay safe and have a nice day.</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="cancellation-fulfilled-processing-24-hours">
+    <div class="template-header">
+      <h3>Fulfilled/Processing &gt;24 hours</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for reaching out to us.</p><p>I understand you'd like to cancel your order, and I truly appreciate you taking the time to let us know. However, since it’s already been more than 24 hours since the order was placed and your package has already been fulfilled and handed over to the courier, we’re unfortunately no longer able to cancel it at this stage.</p><p>I completely understand how frustrating this can be, and I sincerely apologize for the inconvenience.</p><p>That said, once you receive the item, you’re more than welcome to try it and see how it works for you. If for any reason it doesn’t meet your expectations, we’ll be here to help and you’re always covered by our return policy.</p><p>If you have any other questions or if there's anything else I can assist you with, feel free to reach out at any time, I’m happy to help!</p><p>Best regards,</p>
+    </div>
+  </article>
+</section>
+
+<section class="category" id="change-shipping-color-size">
+  <h2>✏️ CHANGE SHIPPING/COLOR/SIZE</h2>
+
+  <article class="template" id="change-shipping-color-size-change-accepted">
+    <div class="template-header">
+      <h3>Change Accepted</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for getting in touch with us.</p><p>I just wanted to let you know that your delivery address has been successfully updated in our system. We’ll make sure your order is shipped to the new address as requested.</p><p>We’ll keep you posted and send you the tracking information as soon as it becomes available.</p><p>If you have any questions in the meantime, feel free to reach out, I’m here to help!</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="change-shipping-color-size-change-size-color">
+    <div class="template-header">
+      <h3>Change Size/Color</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for your message. I’ve updated your order just as requested, the size/color has now been changed to:</p><p>[New Size/Color]</p><p>Everything is all set, so your order will be shipped with this updated detail. If you have any other requests or questions, please don’t hesitate to reach out, I’ll be glad to help.</p><p>Wishing you a wonderful day!</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="change-shipping-color-size-fulfilled-in-transit">
+    <div class="template-header">
+      <h3>Fulfilled - In transit</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for your order and for reaching out to us.</p><p>We’ve been notified by the courier that there may be an issue with the delivery address provided. Since the package is already in transit, we unfortunately can’t make changes to the address from our side.</p><p>Here are the options available to you:</p><ul><li>Retrieve the package from the address originally provided, if possible.</li><li>Contact the courier directly to request a reroute or arrange a pickup from their facility.</li></ul><p>For your convenience, here are the tracking details: Tracking Number: [insert tracking number] Tracking Link: [insert tracking link]</p><p>If you’d like, we’re happy to guide you on how to reach the courier or share their contact details. Please don’t hesitate to let us know, we’re here to support you.</p><p>Warm regards,</p>
+    </div>
+  </article>
+</section>
+
+<section class="category" id="returns">
+  <h2>↩️ RETURNS</h2>
+
+  <article class="template" id="returns-no-return-reaso">
+    <div class="template-header">
+      <h3>No return reaso</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for reaching out. I’m sorry to hear you’re considering a return. I’d love to understand a little more about what is wrong so we can find the best solution together.</p><p>Could you please let us know the reason for your return request? Sometimes we’re able to offer an exchange, adjustment, or even a goodwill solution without you needing to send the item back.</p><p>I look forward to your reply and will do my best to make this process as smooth as possible for you.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-offer-size-replacement-w-fee">
+    <div class="template-header">
+      <h3>Offer size replacement w/ fee</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for your message. I’m truly sorry the item wasn’t the perfect fit, and I completely understand how disappointing that can be.</p><p>To make things easier, I’d be happy to arrange a replacement in your preferred size. We’ll gladly cover the cost of the product itself, all we ask is a small contribution of [SHIPPING COST] per item to help with the shipping. The best part is, you can keep the original item, so there’s no need to go through the hassle of sending it back.</p><p>Just let me know the size you’d like, and I’ll take care of the rest right away.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-offer-10-pr-or-50-store-credit">
+    <div class="template-header">
+      <h3>Offer 10% PR or 50% store credit</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for reaching out. I understand you’d like to return your order, and I truly want to find the most comfortable solution for you.</p><p>To make things easier, I’d love to offer you two flexible alternatives so you don’t have to go through the return process:</p><ul><li>A 10% refund of your purchase price, and you may keep the item - no return needed.</li><li>Or, if you prefer, a 50% store credit that you can use toward a future order.</li></ul><p>If one feels right for you, I’ll make sure it’s processed right away. And if you’d still prefer a return, I’ll support you with that too.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-offer-20-pr-or-75-store-credit">
+    <div class="template-header">
+      <h3>Offer 20% PR or 75% store credit</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for your email. I really want to do everything I can to support you, so I’d love to improve what I can offer:</p><ul><li>A 20% refund of your order, and you may keep the item - no return needed.</li><li>Or, if you’d like, a 75% store credit for a future order, which gives you the best value if you’d enjoy shopping with us again.</li></ul><p>We want you to feel comfortable with the outcome. Please let me know which option feels best for you, and I’ll take care of it right away.</p><p>With warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-re-offer-20-pr-return-instructio">
+    <div class="template-header">
+      <h3>Re-offer 20% PR + Return Instructio</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for your patience and for staying in touch with me. I completely understand how important it is that you feel happy with your order, and I want to make this as easy as possible for you.</p><p>To save you the hassle of a return, I’d be glad to offer you a 20% refund back to your original payment method if you’d like to keep the item. That way, you get to enjoy it at a reduced price without needing to ship it back. If this feels right for you, I can process it right away.</p><p>Of course, if you’d prefer to return the product instead, that’s absolutely fine too. Here’s how it works:</p><p>The item can be sent back within 30 days of receipt in its original packaging and unused.</p><p>Return shipping costs are covered by you in this case.</p><p>I recommend using a tracked shipping method, since refunds can only be processed once the item safely arrives. We can locate it with the tracking number.</p><p>Return Address: [INSERT RETURN ADDRESS HERE]</p><p>Before sending, please also complete our Return Form so I can process everything smoothly. Once the package is received in perfect condition, I’ll arrange your refund within 7 working days.</p><p>Please let me know which option feels best for you, I’ll be here to support you either way.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-free-size-replacement">
+    <div class="template-header">
+      <h3>Free size replacement</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for letting us know. I completely understand how disappointing it can feel when something doesn’t fit as expected, and I’d love to make it right for you.</p><p>I’d love to make this easier for you by sending a free replacement in your preferred size and no need to return the original item. Just let me know the size you’d like, and I’ll make sure it’s shipped out to you right away.</p><p>I’d love for this to end in a way that feels right for you, once you decide, I’ll get everything sorted right away.</p><p>Looking forward to your reply!</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-offer-30-pr-max-or-100-store-credit">
+    <div class="template-header">
+      <h3>Offer 30% PR max or 100% store credit</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for getting back to me. I completely understand where you’re coming from, and I want to do my very best to support you here.</p><p>To be fully transparent, every order involves a number of fixed costs on our side:</p><p>•⁠  ⁠Around 60% goes directly to product cost and marketing to produce the item and make it available. •⁠  ⁠The rest is used for taxes, pick and pack, shipping costs, and team costs.</p><p>Because of this, there’s only so much flexibility we have. That said, I’d love to maximize what I can do for you:</p><p>Option 1: A 30% refund of your purchase price, and you may keep the item; no need to return it. Option 2: A 100% store credit that you can use toward a future order of your choice.</p><p>I truly hope one of these options feels right for you. Please let me know which works best, and I’ll arrange it for you right away.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-refused-offers-pushback-retur">
+    <div class="template-header">
+      <h3>Refused offers - Pushback retur</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>I completely understand that finding the right outcome can sometimes take a little back and forth, and I truly value the time you’ve taken to work through this with us.</p><p>For now, our standard return policy will apply. Should you wish to return the item, you’re welcome to send it back with a tracked shipping method. The cost of shipping is arranged by the customer. You’ll find the full details here: [RETURN POLICY LINK]</p><p>Of course, if you change your mind and would prefer one of the other solutions we offered earlier, I’ll gladly assist you with that instead.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-store-credit-acceptance">
+    <div class="template-header">
+      <h3>Store Credit - Acceptance</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you so much for considering our offer, we really appreciate your flexibility.</p><p>To move forward, could you please confirm if you’d like to accept the following resolution: (PERCENTAGE)% store credit toward your next purchase? Once we have your confirmation, we’ll issue the credit right away so you can use it whenever you’re ready.</p><p>Just a small note for transparency: once the store credit is accepted and applied, it’s considered final. Orders placed using this credit won’t be eligible for a refund, exchange, or further compensation.</p><p>We’re excited to hear your confirmation and to make sure you’re all set with the solution that works best for you.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-replacements-acceptance">
+    <div class="template-header">
+      <h3>Replacements - Acceptance</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for considering our offer, we’d love to get this sorted for you as smoothly as possible.</p><p>To proceed, could you kindly confirm if you’d like to accept the following resolution: a replacement for (AMOUNT or FREE). As soon as we have your confirmation, we’ll arrange shipment of your new item right away.</p><p>Just a small note for transparency: once a replacement is accepted and processed, it’s considered final. Replacements can’t be exchanged for a refund, another item, or additional compensation.</p><p>We look forward to your confirmation and can’t wait to get the new item on its way to you.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-keep-the-item">
+    <div class="template-header">
+      <h3>Keep the item</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for your message!</p><p>I'm writing to confirm that we’ve processed your refund for order #[order number] in the amount of [amount] today. The amount has been credited back to the original payment method used for your order.</p><p>Please note that depending on your bank, it may take up to 5-10 business days for the refund to appear in your account.</p><p>If you have any questions or need further assistance, feel free to reach out, I’m here to help!</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="returns-purchase-amount-refunded">
+    <div class="template-header">
+      <h3>Purchase Amount Refunded</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for your patience.</p><p>We’ve processed a full refund for your recent order. Please allow up to 10 business days for the amount to reflect in your account, depending on your bank or card provider.</p><p>Refund Details: Order Number:  Amount Refunded:  Refund Method:  Date Processed:</p><p>If you'd like to check the status of your refund, you may also reach out to your bank or card provider directly.</p><p>Should you have any further questions or need assistance, feel free to get in touch, we’re here to help!</p><p>Best regards,</p>
+    </div>
+  </article>
+</section>
+
+<section class="category" id="returns-wrong-address">
+  <h2>📍 RETURNS – Wrong Address</h2>
+
+  <article class="template" id="returns-wrong-address-wrong-address">
+    <div class="template-header">
+      <h3>Wrong address</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for your message!</p><p>I know the different addresses can sometimes be a little confusing. To make sure your return reaches us safely, we process all returns only through our official return address, which we provide directly by email.</p><p>If a package is sent to another location, it won’t be able to reach our team and will usually make its way back to the sender.</p><p>If your package is returned to you, please reach out to us again, we’ll gladly guide you through the next steps and provide all the details needed to complete the return with ease.</p><p>Best regards,</p>
+    </div>
+  </article>
+</section>
+
+<section class="category" id="damaged-wrong-item-received">
+  <h2>⚠️ DAMAGED/WRONG ITEM RECEIVED</h2>
+
+  <article class="template" id="damaged-wrong-item-received-photo-evidence">
+    <div class="template-header">
+      <h3>Photo evidence</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for reaching out and bringing this to our attention. In order for us to investigate the issue further and to assist you as efficiently as possible, could you please send us a few clear photos of the product in question?</p><p>This will allow us to better understand the situation and also forward the information to our quality control team for further review.</p><p>Once we receive the photos, we’ll get back to you with the next steps right away.</p><p>Thank you in advance for your cooperation!</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="damaged-wrong-item-received-offer-replacement">
+    <div class="template-header">
+      <h3>Offer replacement</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for sharing the photos/videos, they help us understand the issue better. We sincerely apologize for any inconvenience this may have caused.</p><p>To resolve this, we can send a replacement package free of charge. You may choose the same item or another product of equal value from our range. Refunds are not offered for defective items, but we want to make sure you receive a suitable replacement quickly.</p><p>Please let us know which option you’d like, and we’ll get it ready for you immediately.</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="damaged-wrong-item-received-replacement-policy">
+    <div class="template-header">
+      <h3>Replacement policy</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>I’m very sorry for the inconvenience you’ve experienced, and I completely understand how upsetting it can be when an item doesn’t arrive as expected.</p><p>In line with our policy, we’re happy to send you a new package free of charge for defective products. This can either be the same item you originally ordered, or, if you prefer, another product from our collection in the same price range.</p><p>You’re also welcome to take a look at our website here: [WEBSITE LINK] to see more of our products and choose what you’d like best.</p><p>Once you’ve decided, just let me know and I’ll arrange the replacement for you right away.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="damaged-wrong-item-received-purchase-amount-refunded">
+    <div class="template-header">
+      <h3>Purchase Amount Refunded</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for your patience.</p><p>We’ve processed a full refund for your recent order. Please allow up to 10 business days for the amount to reflect in your account, depending on your bank or card provider.</p><p>Refund Details: Order Number:  Amount Refunded:  Refund Method:  Date Processed:</p><p>If you'd like to check the status of your refund, you may also reach out to your bank or card provider directly.</p><p>Should you have any further questions or need assistance, feel free to get in touch, we’re here to help!</p><p>Best regards,</p>
+    </div>
+  </article>
+</section>
+
+<section class="category" id="order-lost-in-transit-return-to-sender-rts">
+  <h2>🔍 ORDER LOST IN TRANSIT &amp; RETURN TO SENDER (RTS)</h2>
+
+  <article class="template" id="order-lost-in-transit-return-to-sender-rts-takeover">
+    <div class="template-header">
+      <h3>Takeover</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer’s Name],</p><p>Thank you so much for reaching out and for your patience. I understand how much you’re looking forward to receiving your order, and we’ll do everything we can to get this sorted quickly.</p><p>To make sure this is resolved properly, I’ve forwarded your case to our relevant team, who will personally look into the situation with our shipping partner. They’ll get back to you as soon as possible with an update and the next steps.</p><p>I’ll continue to keep an eye on your case as well, so you’re not left waiting without answers. Thank you again for your understanding, we’ll do our very best to get this sorted quickly for you.</p><p>Warm regards,</p>
+    </div>
+  </article>
+</section>
+
+<section class="category" id="return-to-china-rtc">
+  <h2>🇨🇳 RETURN TO CHINA (RTC)</h2>
+
+  <article class="template" id="return-to-china-rtc-in-transit">
+    <div class="template-header">
+      <h3>In Transit</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>I just wanted to keep you updated about your return parcel, it’s still on its way and hasn’t reached customs for clearance yet.</p><p>For now, everything is in good hands, I’ll be keeping an eye on the tracking for you. As soon as it arrives at customs, I’ll reach out with the next steps so the process stays as smooth as possible for you.</p><p>Thank you so much for your patience and understanding. Please know I’ll be here to guide you through each step until everything is fully resolved.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="return-to-china-rtc-awaiting-update">
+    <div class="template-header">
+      <h3>Awaiting Update</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for the follow-up regarding your return. I’d be happy to check this for you.</p><p>We will now verify your shipment with our relevant team and follow up with them regarding the status of your package.</p><p>As soon as we receive their confirmation, we’ll get back to you right away with the next steps.</p><p>Thank you for your patience and understanding while we complete this process.</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="return-to-china-rtc-reached-customs">
+    <div class="template-header">
+      <h3>Reached customs</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Your return parcel has now reached customs, and the clearance fee has been confirmed at [€____].</p><p>To make this process easier for you, we can cover the customs fee on your behalf so you won’t have to handle the payment directly. The fee would simply be deducted from your total refund once everything is finalized.</p><p>Would you like us to go ahead with this arrangement? Once you confirm, I’ll process it right away for you.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="return-to-china-rtc-rts-retur">
+    <div class="template-header">
+      <h3>RTS retur</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>I wanted to keep you updated, according to the courier’s tracking, it seems the parcel is being sent back to you instead of reaching us.</p><p>To save you the trouble of reshipping the package back and to avoid any more delays or shipping costs, we’d like to propose a partial refund of [00]% of your total order value, rather than asking you to reship the item again.</p><p>We truly hope this makes things easier for you, and we’ll be glad to process the refund once you confirm.</p><p>Looking forward to your reply!</p><p>Warm regards,</p>
+    </div>
+  </article>
+</section>
+
+<section class="category" id="general-query">
+  <h2>💬 GENERAL QUERY</h2>
+
+  <article class="template" id="general-query-unsubscribe-newsletter">
+    <div class="template-header">
+      <h3>Unsubscribe Newsletter</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for your message!</p><p>If you’d like to unsubscribe from our newsletter, you can do so easily by clicking the “Unsubscribe” link at the bottom of any of our emails. It only takes a moment, and you won’t receive any further newsletters afterward.</p><p>If you run into any trouble with this or if you’d prefer, just let me know, and I can assist you with the process.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="general-query-pending-concer">
+    <div class="template-header">
+      <h3>Pending Concer</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for your message. I’ve passed your concern along to our team so I can give you the most accurate information.</p><p>I’ll be back in touch with the answer as soon as I have it. In the meantime, if you’d like to share any extra details or have additional questions, just reply to this email, I’ll be glad to take care of it for you.</p><p>Thank you again for your patience, and I’ll be in touch shortly with an update.</p><p>Best regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="general-query-dispute-threat">
+    <div class="template-header">
+      <h3>Dispute Threat</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for taking the time to share your concern with me. I completely understand how you feel, and I truly appreciate you bringing this to my attention.</p><p>I’d like to make sure you receive the best possible support, so please allow me a little time to look into this further. I’ll be in touch shortly with a resolution.</p><p>Thank you for your patience and in the meantime, if there’s anything else I can do for you, please don’t hesitate to let me know.</p><p>Warm regards,</p>
+    </div>
+  </article>
+
+  <article class="template" id="general-query-why-is-it-from-china">
+    <div class="template-header">
+      <h3>Why is it from China?</h3>
+      <a class="back-link" href="#toc">↑ Terug naar overzicht</a>
+    </div>
+    <div class="template-body">
+      <p>Dear [Customer's Name],</p><p>Thank you for reaching out!</p><p>We want to be transparent about how we operate: to offer high-quality products at the best prices, we ship directly from our global warehouses. This allows us to provide a wide variety of items while keeping costs as affordable as possible.</p><p>While this international process sometimes means shipments take a bit longer, please know that we are committed to getting your order to you as quickly as we can, without compromising quality.</p><p>If you have any questions about your order or shipping, don’t hesitate to reach out, we’re here to help!</p><p>Best regards,</p>
+    </div>
+  </article>
+</section>
+
+  </main>
+
+</div>
+
+</body>
+</html>
